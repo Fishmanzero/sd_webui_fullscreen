@@ -3,25 +3,36 @@
     top: 15px;
     right: 15px;
     z-index: 10000;
-    width: 42px;
-    height: 42px;
+    width: 44px; /* iOS 上稍微大一点方便手指点击 */
+    height: 44px;
     background: var(--button-secondary-background-fill);
     border: 1px solid var(--button-secondary-border-color);
-    border-radius: 8px;
-    font-size: 1.4em;
-    transition: opacity 0.4s ease, transform 0.2s, background 0.2s;
+    border-radius: 10px;
+    font-size: 1.5em;
+    transition: opacity 0.4s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: transparent;
 }
 
-#fullscreen_button:hover {
-    transform: scale(1.05);
-    background: var(--button-secondary-background-fill-hover);
-    border-color: var(--primary-500);
+/* 伪全屏核心样式：适用于 iPhone */
+body.pseudo-fullscreen-active {
+    overflow: hidden !important;
 }
 
-/* 全屏激活时的状态 */
+body.pseudo-fullscreen-active gradio-app {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: var(--body-background-fill);
+    overflow-y: auto !important;
+}
+
 #fullscreen_button.is-fullscreen {
     color: var(--primary-500);
+    border-color: var(--primary-500);
 }
